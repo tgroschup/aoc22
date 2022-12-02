@@ -45,17 +45,20 @@ object Shape {
 }
 
 object Day2 {
-  def parseStrategy(name: String, useStragey: Boolean = false): Long =
+  def parseStrategy(name: String, useStrategy: Boolean): Long =
     Source.fromResource(name)
       .getLines()
       .map(_.toList)
-      .map { case opponentHint :: _ :: hint :: _ =>
-        val opponent = Shape(opponentHint)
-        val self = if (useStragey) Shape(opponent, hint) else Shape(hint)
-        self.compare(opponent) + self.score
-      }.sum
+      .map { case opponentMove :: _ :: hint :: _ =>
+        val opponentShape = Shape(opponentMove)
+        val ownShape = if (useStrategy) Shape(opponentShape, hint) else Shape(hint)
+        ownShape.compare(opponentShape) + ownShape.score
+      }
+      .sum
 
-  def example: Long = parseStrategy("day2/example.txt")
-  def star1: Long = parseStrategy("day2/star1.txt")
-  def star2: Long = parseStrategy("day2/star1.txt", useStragey = true)
+  def example: Long = parseStrategy("day2/example.txt", useStrategy = false)
+
+  def star1: Long = parseStrategy("day2/star1.txt", useStrategy = true)
+
+  def star2: Long = parseStrategy("day2/star1.txt", useStrategy = true)
 }
