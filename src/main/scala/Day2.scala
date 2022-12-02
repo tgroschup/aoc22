@@ -46,15 +46,15 @@ object Shape {
 
 object Day2 {
   def parseStrategy(name: String, useStragey: Boolean = false): Long =
-    val file = Source.fromResource(name)
+    Source.fromResource(name)
+      .getLines()
+      .map(_.toList)
+      .map { case opponentHint :: _ :: hint :: _ =>
+        val opponent = Shape(opponentHint)
+        val self = if (useStragey) Shape(opponent, hint) else Shape(hint)
+        self.compare(opponent) + self.score
+      }.sum
 
-    val scores = for (line <- file.getLines()) yield
-      val opponent = Shape(line.head)
-      val hint = line.last
-      val self = if(useStragey) Shape(opponent, hint) else Shape(hint)
-      self.compare(opponent) + self.score
-
-    scores.sum
   def example: Long = parseStrategy("day2/example.txt")
   def star1: Long = parseStrategy("day2/star1.txt")
   def star2: Long = parseStrategy("day2/star1.txt", useStragey = true)
