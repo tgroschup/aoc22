@@ -1,4 +1,4 @@
 @main
 def main(): Unit = {
-  println("Hello world!")
+  println(Day3.star2)
 }

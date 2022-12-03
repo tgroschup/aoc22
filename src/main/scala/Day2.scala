@@ -58,7 +58,7 @@ object Day2 {
 
   def example: Long = parseStrategy("day2/example.txt", useStrategy = false)
 
-  def star1: Long = parseStrategy("day2/star1.txt", useStrategy = true)
+  def star1: Long = parseStrategy("day2/star1.txt", useStrategy = false)
 
   def star2: Long = parseStrategy("day2/star1.txt", useStrategy = true)
 }
