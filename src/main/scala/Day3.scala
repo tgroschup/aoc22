@@ -1,15 +1,16 @@
 import scala.io.Source
 
-object Day3 {
+object Day3:
   def score(c: Char): Int =
     if(c >= 'a') c - '`'
     else c - 'A' + 27
+
   def checkCompartments(name: String): Long =
     Source.fromResource(name)
       .getLines()
       .map(line => line.splitAt(line.length/2))
-      .map{
-        case (c1, c2) => c1.filter(c2.contains)
+      .map {
+        (c1, c2) => c1.filter(c2.contains)
       }
       .map(s => score(s.head))
       .sum
@@ -34,5 +35,3 @@ object Day3 {
 
   def example2: Long = checkElfTriples("day3/example.txt")
   def star2: Long = checkElfTriples("day3/star1.txt")
-
-}

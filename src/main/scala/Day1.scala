@@ -6,7 +6,7 @@ object Day1 {
     val file = Source.fromResource(name)
     var currentElf = 1
     val elfCalMap = mutable.Map[Int, Long](1 -> 0)
-    for (line <- file.getLines()) 
+    for line <- file.getLines() do
       line match 
         case "" =>
           currentElf += 1
