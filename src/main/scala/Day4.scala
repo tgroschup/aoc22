@@ -1,9 +1,12 @@
 import scala.io.Source
 
 case class Interval(lower: Int, upper: Int) {
-  def contains(x: Int): Boolean = x >= lower && x <= upper
-  def contains(other :Interval): Boolean = lower <= other.lower && upper >= other.upper
- }
+  def contains(x: Int): Boolean =
+    lower <= x && upper >= x
+  def contains(other :Interval): Boolean =
+    lower <= other.lower && upper >= other.upper
+}
+
 object Interval {
   def apply(s: String) = {
     val bounds = s.split("-")
@@ -13,15 +16,13 @@ object Interval {
     )
   }
 }
+
 object Day4 {
   def fullyContained(a: Interval, b: Interval): Boolean =
-    if (a contains b) || (b contains a) then
-      true
-    else
-      false
+    (a contains b) || (b contains a)
 
   def overlap(a: Interval, b: Interval): Boolean =
-    a.contains(b.lower) || a.contains(b.upper) || b.contains(a.lower) || b.contains(a.upper)
+    (a contains b.lower) || (a contains b.upper) || (b contains a.lower) || (b contains a.upper)
 
   def count(assignments: List[List[Interval]], predicate: (Interval, Interval) => Boolean): Int =
     assignments
