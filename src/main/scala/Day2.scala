@@ -1,6 +1,6 @@
 import scala.io.Source
 
-trait Shape {
+sealed trait Shape {
   val loseTo: Shape
   val winAgainst: Shape
   def score: Int
