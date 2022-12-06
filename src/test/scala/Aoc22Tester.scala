@@ -82,5 +82,23 @@ class Aoc22Tester extends AnyWordSpec with Matchers {
     "star 2" in {
       Day5.star2 mustBe "PGSQBFLDP"
     }
+
+    "Day 6" must  {
+      "example 1" in {
+        Day6.example mustBe 7
+      }
+
+      "star 1" in {
+        Day6.star1 mustBe 1109
+      }
+
+      "example 2" in {
+        Day6.example2 mustBe 19
+      }
+
+      "star 2" in {
+        Day6.star2 mustBe 3965
+      }
+    }
   }
 }
